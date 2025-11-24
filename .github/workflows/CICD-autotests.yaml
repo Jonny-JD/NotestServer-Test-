@@ -1,0 +1,30 @@
+name: CI/CD Autotests
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: 'Commit SHA for frontend and backend'
+        required: true
+
+jobs:
+  build: 
+    runs-on: self-hosted
+    
+    steps:
+    - name: Checkout autotests repo
+      uses: actions/checkout@v4
+
+    - name: Clone frontend
+      uses: actions/checkout@v4
+      with:
+        repository: Jonny-JD/NotesServer-F-
+        ref: test
+        path: frontend
+        
+    - name: Clone backend
+      uses: actions/checkout@v4
+      with:
+        repository: Jonny-JD/NotesServer-B-
+        ref: test
+        path: backend
