@@ -61,3 +61,23 @@ jobs:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       run: make -C backend push
     
+    - name: Run make kube-config
+      run: make kube-config
+      
+    - name: Run make create test namespace
+      run: make create-test-namespace
+      
+    - name: Run make deploy test backend
+      run: make deploy-test-backend
+
+    - name: Run make deploy test frontend
+      run: make deploy-test-frontend
+
+    - name: Wait for backend rollout
+      run: kubectl rollout status deployment/backend -n test
+
+    - name: Wait for frontend rollout
+      run: kubectl rollout status deployment/frontend -n test
+      
+    - name: Run make cleanup-namespace
+      run: make cleanup-namespace
