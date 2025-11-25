@@ -66,6 +66,9 @@ jobs:
       
     - name: Run make create test namespace
       run: make create-test-namespace
+    
+    - name: Run make create secrets
+      run: make create-secrets
       
     - name: Run make deploy test backend
       run: make deploy-test-backend
