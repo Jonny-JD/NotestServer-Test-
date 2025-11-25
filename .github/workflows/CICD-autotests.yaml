@@ -61,8 +61,10 @@ jobs:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       run: make -C backend push
     
-    - name: Run make kube-config
-      run: make kube-config
+    - name: Kube config
+      run: |
+        mkdir -p ~/.kube
+        echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
       
     - name: Run make create test namespace
       run: make create-test-namespace
