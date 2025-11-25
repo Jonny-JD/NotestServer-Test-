@@ -36,12 +36,14 @@ jobs:
       env: 
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        GITHUB_SHA: ${{ github.sha }}
       run: make -C frontend build
 
     - name: Run make backend build
       env: 
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        GITHUB_SHA: ${{ github.sha }}
       run: make -C backend build
       
     - name: Run make frontend push
