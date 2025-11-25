@@ -11,8 +11,11 @@ create-secrets:
 		-n test \
 		--dry-run=client -o yaml | kubectl apply -f -
 
+deploy-test-backend:
+	envsubst < infra/k8s/test/backend-deployment.yaml | kubectl apply -f -
+
 deploy-test-frontend:
-	kubectl apply -f infra/k8s/test/frontend-test-deployment.yaml
+	envsubst < infra/k8s/test/frontend-deployment.yaml | kubectl apply -f -
 
 cleanup-namespace:
 	kubectl delete namespace test || echo "Namespace already deleted"
