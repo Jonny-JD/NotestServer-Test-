@@ -39,6 +39,9 @@ jobs:
         GITHUB_SHA: ${{ github.sha }}
       run: make -C frontend build
 
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+  
     - name: Run make backend build
       env: 
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
