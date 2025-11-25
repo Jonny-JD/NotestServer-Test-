@@ -5,9 +5,8 @@ create-test-namespace:
 
 create-secrets:
 	kubectl create secret generic db-credentials \
-		--from-literal=POSTGRES_USER=${TEST_DB_USER} \
-		--from-literal=PASSWORD=${TEST_DB_PASS} \
-		--from-literal=POSTGRES_DB=${TEST_DB_NAME} \
+		--from-literal=username=${TEST_DB_USER} \
+		--from-literal=password=${TEST_DB_PASS} \
 		-n test \
 		--dry-run=client -o yaml | kubectl apply -f -
 
