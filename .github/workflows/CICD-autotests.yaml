@@ -15,14 +15,14 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: Jonny-JD/NotesServer-F-
-        ref: test
+        ref: master
         path: frontend
         
     - name: Clone backend
       uses: actions/checkout@v4
       with:
         repository: Jonny-JD/NotesServer-B-
-        ref: test
+        ref: master
         path: backend
         
     - name: Login to Hub
