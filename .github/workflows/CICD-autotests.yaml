@@ -6,6 +6,12 @@ on:
 jobs:
   build: 
     runs-on: self-hosted
+    env:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      IMAGE_SHA: ${{ github.sha }}
+      BACKEND_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/notes-backend:${{ github.sha }}
+      FRONTEND_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/notes-frontend:${{ github.sha }}
+
     
     steps:
     - name: Checkout autotests repo
