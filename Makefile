@@ -11,9 +11,6 @@ create-secrets:
 		-n test \
 		--dry-run=client -o yaml | kubectl apply -f -
 
-deploy-test-backend:
-	kubectl apply -f infra/k8s/test/backend-test-deployment.yaml
-
 deploy-test-frontend:
 	kubectl apply -f infra/k8s/test/frontend-test-deployment.yaml
 
