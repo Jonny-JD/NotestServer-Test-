@@ -80,9 +80,13 @@ jobs:
       
     - name: Run make deploy test backend
       run: make deploy-test-backend
+      env:
+        IMAGE_NAME: ${{ env.BACKEND_IMAGE }}
 
     - name: Run make deploy test frontend
       run: make deploy-test-frontend
+      env:
+        IMAGE_NAME: ${{ env.FRONTEND_IMAGE }}
 
     - name: Wait for backend rollout
       run: kubectl rollout status deployment/backend -n test
