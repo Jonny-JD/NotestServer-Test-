@@ -1,9 +1,5 @@
 .PHONY: kube-config create-test-namespace create-secrets deploy-test-backend deploy-test-frontend cleanup-namespace
 
-kube-config:
-	mkdir -p ~/.kube
-	echo "${KUBECONFIG}" > ~/.kube/config
-
 create-test-namespace:
 	kubectl create namespace test || echo "Namespace already exists"
 
