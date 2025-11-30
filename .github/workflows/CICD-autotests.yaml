@@ -81,10 +81,18 @@ jobs:
       env:
         IMAGE_NAME: ${{ env.BACKEND_IMAGE }}
 
+    - name: Print backend logs on fail
+      if: failure()
+      run: kubectl logs -l cybernotes=backend -n test --tail=200
+
     - name: Run make deploy test frontend
       run: make deploy-test-frontend
       env:
         IMAGE_NAME: ${{ env.FRONTEND_IMAGE }}
+
+    - name: Print frontend logs on fail
+      if: failure()
+      run: kubectl logs -l cybernotes=frontend -n test --tail=200
 
     - name: Wait for backend rollout
       run: kubectl rollout status deployment/backend -n test
@@ -93,4 +101,5 @@ jobs:
       run: kubectl rollout status deployment/frontend -n test
       
     - name: Run make cleanup-namespace
+      if: always()
       run: make cleanup-namespace
