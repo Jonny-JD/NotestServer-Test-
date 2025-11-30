@@ -43,7 +43,7 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         GITHUB_SHA: ${{ github.sha }}
-      run: make -C frontend build
+      run: make -C frontend build-test
 
     - name: Make gradlew executable
       run: chmod +x backend/gradlew
@@ -53,19 +53,19 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         GITHUB_SHA: ${{ github.sha }}
-      run: make -C backend build
+      run: make -C backend build-test
       
     - name: Run make frontend push
       env: 
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-      run: make -C frontend push
+      run: make -C frontend push-test
     
     - name: Run make backend push
       env: 
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-      run: make -C backend push
+      run: make -C backend push-test
     
     - name: Kube config
       run: |
