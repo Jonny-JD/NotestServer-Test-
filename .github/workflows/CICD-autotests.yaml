@@ -31,18 +31,17 @@ jobs:
         ref: test
         path: backend
         
-    - name: Login to Hub
+    - name: Reset Docker config
       run: |
         rm -f ~/.docker/config.json
-        echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-
+        echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$(echo -n "${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}" | base64)\"}}}" > ~/.docker/config.json
 
     - name: Run make frontend build
       env: 
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         GITHUB_SHA: ${{ github.sha }}
-      run: make -C frontend build-test
+      run: DOCKER_BUILDKIT=0 make -C frontend build-test
 
     - name: Make gradlew executable
       run: chmod +x backend/gradlew
@@ -52,7 +51,7 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         GITHUB_SHA: ${{ github.sha }}
-      run: make -C backend build-test
+      run: DOCKER_BUILDKIT=0 make -C backend build-test
       
     - name: Run make frontend push
       env: 
