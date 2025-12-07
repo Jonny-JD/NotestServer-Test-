@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: selenium-hub
+  namespace: test
+spec:
+  selector:
+    app: selenium-hub
+  ports:
+    - protocol: TCP
+      port: 4444
+      targetPort: 4444
+  type: ClusterIP
