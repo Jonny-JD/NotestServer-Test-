@@ -99,6 +99,27 @@ jobs:
 
     - name: Wait for frontend rollout
       run: kubectl rollout status deployment/frontend -n test
+
+    - name: Run make deploy selenium hub
+      run: make deploy-selenium-hub
+
+    - name: Wait for hub rollout
+      run: kubectl rollout status deployment/selenium-hub -n test
+
+    - name: Run make deploy selenium service
+      run: make deploy-selenium-service
+
+    - name: Run make deploy chrome
+      run: make deploy-chrome
+
+    - name: Wait for chrome rollout
+      run: kubectl rollout status deployment/selenium-chrome -n test
+
+    - name: Run make deploy firefox
+      run: make deploy-firefox
+
+    - name: Wait for firefox rollout
+      run: kubectl rollout status deployment/selenium-firefox -n test
       
     - name: Run make cleanup-namespace
       if: always()
