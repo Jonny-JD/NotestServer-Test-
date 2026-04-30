@@ -145,12 +145,6 @@ jobs:
 
     - name: Wait for port forward
       run: sleep 3
-
-    - name: Check auth endpoint
-      run: curl -v http://192.168.3.16/api/v1/auth/me
-      
-    - name: Check connectivity from cluster
-      run: kubectl run test-curl --image=curlimages/curl --restart=Never -n test --rm -it -- curl http://192.168.3.16/api/v1/auth/me
       
     - name: Run autotests
       run: ./gradlew test
