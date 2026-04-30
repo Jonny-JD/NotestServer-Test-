@@ -1,5 +1,6 @@
 package com.jimmy_d.autotests.desktop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -9,6 +10,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+@Slf4j
 class MainPageTest extends BaseTest {
 
     @Test
@@ -32,6 +35,8 @@ class MainPageTest extends BaseTest {
                 .map(elem -> elem.getText().toUpperCase())
                 .sorted()
                 .toArray(String[]::new);
+
+        aside.findAll("button").forEach(el -> log.info("Button: {}", el.getText()));
 
         assertArrayEquals(expectedButtons, actualButtons);
     }
