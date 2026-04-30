@@ -116,7 +116,7 @@ jobs:
       run: kubectl rollout status deployment/selenium-chrome -n test
 
     - name: Check chrome logs
-      run: kubectl logs -l app=selenium-chrome -n test --tail=50
+      run: kubectl logs -l app=selenium-node -n test --tail=50
 
     - name: Run make deploy firefox
       run: make deploy-firefox
