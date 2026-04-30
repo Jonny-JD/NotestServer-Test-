@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+
+java {
+    version = 21
+}
+
+group = 'com.jimmy_d'
+version = '1.0-SNAPSHOT'
+
+apply from: 'version.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.codeborne:selenide:7.16.0'
+
+    testImplementation platform ('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.13'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testCompileOnly 'org.projectlombok:lombok:1.18.46'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.46'
+
+}
+
+test {
+    useJUnitPlatform()
+}
