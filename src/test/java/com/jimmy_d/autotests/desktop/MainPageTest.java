@@ -25,6 +25,8 @@ class MainPageTest extends BaseTest {
     void menuButtonShouldBeVisible() {
         open("/");
 
+        localStorage().clear();
+        refresh();
         $("button[data-testid='login']").shouldBe(Condition.visible);
 
         var aside = $(By.className("aside-interaction-buttons"));
