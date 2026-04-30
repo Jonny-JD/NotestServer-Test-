@@ -115,6 +115,9 @@ jobs:
     - name: Wait for chrome rollout
       run: kubectl rollout status deployment/selenium-chrome -n test
 
+    - name: Check chrome logs
+      run: kubectl logs -l app=selenium-node -n test --tail=50
+
     - name: Run make deploy firefox
       run: make deploy-firefox
 
@@ -125,11 +128,23 @@ jobs:
       run: |
         ls -la
         chmod +x gradlew
+        
+    - name: Wait for selenium ready
+      run: sleep 10
+
+    - name: Port forward selenium hub
+      run: kubectl port-forward svc/selenium-hub 4444:4444 -n test &
+
+    - name: Wait for port forward
+      run: sleep 3
+
+    - name: Check hub status
+      run: curl http://localhost:4444/status
       
     - name: Run autotests
       run: ./gradlew test
       env:
-        SELENIUM_HUB: http://selenium-hub/wd/hub
+        SELENIUM_HUB: http://localhost:4444
         APP_URL: http://frontend-service
         
     - name: Upload test artifacts
