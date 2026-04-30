@@ -167,3 +167,6 @@ jobs:
     - name: Check services
       if: always()
       run: kubectl get svc -n test
+
+    - name: Run make cleanup
+      run: make cleanup-namespace
