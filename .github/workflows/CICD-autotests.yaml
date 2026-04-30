@@ -75,6 +75,9 @@ jobs:
     
     - name: Run make create secrets
       run: make create-secrets
+      env:
+        TEST_DB_USER: ${{ secrets.TEST_DB_USER }}
+        TEST_DB_PASS: ${{ secrets.TEST_DB_PASS }}
       
     - name: Run make deploy test backend
       run: make deploy-test-backend
@@ -94,8 +97,16 @@ jobs:
       if: failure()
       run: kubectl logs -l cybernotes=frontend -n test --tail=200
 
+    - name: Run make deploy ingress
+      run: make deploy-test-ingress
+
     - name: Wait for backend rollout
       run: kubectl rollout status deployment/backend -n test
+
+    - name: Check ingress
+      run: |
+        kubectl get ingress -n test
+        curl http://$(kubectl get ingress ingress -n test -o jsonpath='{.status.loadBalancer.ingress[0].ip}')/api/v1/auth/me
 
     - name: Wait for frontend rollout
       run: kubectl rollout status deployment/frontend -n test
@@ -114,9 +125,6 @@ jobs:
 
     - name: Wait for chrome rollout
       run: kubectl rollout status deployment/selenium-chrome -n test
-
-    - name: Check chrome logs
-      run: kubectl logs -l app=selenium-node -n test --tail=50
 
     - name: Run make deploy firefox
       run: make deploy-firefox
@@ -138,8 +146,8 @@ jobs:
     - name: Wait for port forward
       run: sleep 3
 
-    - name: Check hub status
-      run: curl http://localhost:4444/status
+    - name: Check auth endpoint
+      run: curl -v http://192.168.3.16/api/v1/auth/me
       
     - name: Run autotests
       run: ./gradlew test
@@ -156,7 +164,6 @@ jobs:
           build/reports
           build/screenshots
 
-      
-    - name: Run make cleanup-namespace
+    - name: Check services
       if: always()
-      run: make cleanup-namespace
+      run: kubectl get svc -n test
