@@ -24,9 +24,6 @@ class MainPageTest extends BaseTest {
     @Test
     void menuButtonShouldBeVisible() {
         open("/");
-        var logout = $("button[data-testid='logout']");
-
-        logout.click();
 
         $("button[data-testid='login']").shouldBe(Condition.visible);
 

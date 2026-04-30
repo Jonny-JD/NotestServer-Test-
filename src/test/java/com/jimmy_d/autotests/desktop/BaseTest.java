@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.localStorage;
 
 
 @Slf4j
@@ -25,6 +26,7 @@ public abstract class BaseTest {
     @BeforeEach
     void clearCookies() {
         clearBrowserCookies();
+        localStorage().clear();
     }
 
 }
