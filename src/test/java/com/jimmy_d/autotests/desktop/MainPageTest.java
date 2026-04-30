@@ -15,17 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MainPageTest extends BaseTest {
 
     @Test
-    void shouldBeTitled() {
-        open("/");
-        assertEquals("cyber-notes", title());
-    }
-
-    @Test
     void menuButtonShouldBeVisible() {
         open("/");
 
         String storage = executeJavaScript("return JSON.stringify(localStorage)");
         log.info("localStorage: {}", storage);
+
 
         var aside = $(By.className("aside-interaction-buttons"));
 
@@ -45,6 +40,12 @@ class MainPageTest extends BaseTest {
 
 
         assertArrayEquals(expectedButtons, actualButtons);
+    }
+
+    @Test
+    void shouldBeTitled() {
+        open("/");
+        assertEquals("cyber-notes", title());
     }
 
 }
