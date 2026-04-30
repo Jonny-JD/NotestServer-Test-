@@ -126,8 +126,14 @@ jobs:
         ls -la
         chmod +x gradlew
         
+    - name: Wait for selenium ready
+      run: sleep 10
+
     - name: Port forward selenium hub
       run: kubectl port-forward svc/selenium-hub 4444:4444 -n test &
+
+    - name: Wait for port forward
+      run: sleep 3
       
     - name: Run autotests
       run: ./gradlew test
