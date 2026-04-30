@@ -25,8 +25,6 @@ class MainPageTest extends BaseTest {
     void menuButtonShouldBeVisible() {
         open("/");
 
-        localStorage().clear();
-        refresh();
         $("button[data-testid='login']").shouldBe(Condition.visible);
 
         var aside = $(By.className("aside-interaction-buttons"));
@@ -44,6 +42,9 @@ class MainPageTest extends BaseTest {
                 .toArray(String[]::new);
 
         aside.findAll("button").forEach(el -> log.info("Button: {}", el.getText()));
+
+        String storage = executeJavaScript("return JSON.stringify(localStorage)");
+        log.info("localStorage: {}", storage);
 
         assertArrayEquals(expectedButtons, actualButtons);
     }
