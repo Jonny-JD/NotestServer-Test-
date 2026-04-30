@@ -137,6 +137,9 @@ jobs:
 
     - name: Wait for port forward
       run: sleep 3
+
+    - name: Check hub status
+      run: curl http://localhost:4444/status
       
     - name: Run autotests
       run: ./gradlew test
