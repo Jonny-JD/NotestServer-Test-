@@ -75,6 +75,9 @@ jobs:
     
     - name: Run make create secrets
       run: make create-secrets
+      env:
+        TEST_DB_USER: ${{ secrets.TEST_DB_USER }}
+        TEST_DB_PASS: ${{ secrets.TEST_DB_PASS }}
       
     - name: Run make deploy test backend
       run: make deploy-test-backend
