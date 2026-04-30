@@ -24,6 +24,9 @@ class MainPageTest extends BaseTest {
     void menuButtonShouldBeVisible() {
         open("/");
 
+        String storage = executeJavaScript("return JSON.stringify(localStorage)");
+        log.info("localStorage: {}", storage);
+
         var aside = $(By.className("aside-interaction-buttons"));
 
         var expectedButtons = Stream.of("discover", "create", "login", "sign up")
@@ -39,8 +42,7 @@ class MainPageTest extends BaseTest {
 
         aside.findAll("button").forEach(el -> log.info("Button: {}", el.getText()));
 
-        String storage = executeJavaScript("return JSON.stringify(localStorage)");
-        log.info("localStorage: {}", storage);
+
 
         assertArrayEquals(expectedButtons, actualButtons);
     }
