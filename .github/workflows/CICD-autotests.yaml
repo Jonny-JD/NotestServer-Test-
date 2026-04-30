@@ -145,6 +145,9 @@ jobs:
 
     - name: Wait for port forward
       run: sleep 3
+
+    - name: Check auth endpoint
+      run: curl -v http://192.168.3.16/api/v1/auth/me
       
     - name: Run autotests
       run: ./gradlew test
