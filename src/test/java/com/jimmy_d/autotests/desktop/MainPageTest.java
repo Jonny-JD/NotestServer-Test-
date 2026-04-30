@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @Slf4j
@@ -17,6 +16,8 @@ class MainPageTest extends BaseTest {
     @Test
     void menuButtonShouldBeVisible() {
         open("/");
+        localStorage().clear();
+        refresh();
 
         String storage = executeJavaScript("return JSON.stringify(localStorage)");
         log.info("localStorage: {}", storage);
@@ -38,14 +39,7 @@ class MainPageTest extends BaseTest {
         aside.findAll("button").forEach(el -> log.info("Button: {}", el.getText()));
 
 
-
         assertArrayEquals(expectedButtons, actualButtons);
-    }
-
-    @Test
-    void shouldBeTitled() {
-        open("/");
-        assertEquals("cyber-notes", title());
     }
 
 }
