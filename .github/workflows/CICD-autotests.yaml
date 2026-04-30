@@ -97,8 +97,8 @@ jobs:
     - name: Run autotests
       run: ./gradlew test
       env:
-        SELENIUM_HUB: http://<твой-selenium-hub-сервис>/wd/hub
-        APP_URL: http://<твой-frontend-сервис>
+        SELENIUM_HUB: http://selenium-hub/wd/hub
+        APP_URL: http://frontend-service
         
     - name: Upload test artifacts
       if: failure()
