@@ -94,6 +94,21 @@ jobs:
       if: failure()
       run: kubectl logs -l cybernotes=frontend -n test --tail=200
 
+    - name: Run autotests
+      run: ./gradlew test
+      env:
+        SELENIUM_HUB: http://<твой-selenium-hub-сервис>/wd/hub
+        APP_URL: http://<твой-frontend-сервис>
+        
+    - name: Upload test artifacts
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: |
+          build/reports
+          build/screenshots
+
     - name: Wait for backend rollout
       run: kubectl rollout status deployment/backend -n test
 
