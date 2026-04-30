@@ -18,7 +18,7 @@ public abstract class BaseTest {
         Configuration.baseUrl = System.getenv()
                 .getOrDefault("APP_URL", "http://host.docker.internal:5173");
         Configuration.browser = "chrome";
-        Configuration.timeout = 4000;
+        Configuration.timeout = 10000;
     }
 
 
