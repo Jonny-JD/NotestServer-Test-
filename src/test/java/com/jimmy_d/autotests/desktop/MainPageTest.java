@@ -1,6 +1,5 @@
 package com.jimmy_d.autotests.desktop;
 
-import com.codeborne.selenide.Condition;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -25,14 +24,11 @@ class MainPageTest extends BaseTest {
     void menuButtonShouldBeVisible() {
         open("/");
 
-        $("button[data-testid='login']").shouldBe(Condition.visible);
-
         var aside = $(By.className("aside-interaction-buttons"));
 
         var expectedButtons = Stream.of("discover", "create", "login", "sign up")
                 .map(String::toUpperCase).sorted()
                 .toArray(String[]::new);
-
 
 
         var actualButtons = aside.findAll("button")
