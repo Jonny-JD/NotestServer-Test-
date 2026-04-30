@@ -22,7 +22,7 @@ spec:
           - containerPort: 8080
           env:
           - name: SPRING_PROFILES_ACTIVE
-            value: "prod"
+            value: "test"
           - name: DB_URL
             value: "jdbc:postgresql://192.168.3.16:5433/notesbase-test"
           - name: DB_USERNAME
