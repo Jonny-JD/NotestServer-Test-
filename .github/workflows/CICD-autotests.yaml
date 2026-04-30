@@ -94,6 +94,9 @@ jobs:
       if: failure()
       run: kubectl logs -l cybernotes=frontend -n test --tail=200
 
+    - name: Run make deploy ingress
+      run: make deploy-test-ingress
+
     - name: Wait for backend rollout
       run: kubectl rollout status deployment/backend -n test
 
