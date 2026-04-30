@@ -16,6 +16,9 @@ deploy-test-backend:
 deploy-test-frontend:
 	envsubst < infra/k8s/frontend-deployment.yaml | kubectl apply -f -
 
+deploy-test-ingress:
+	envsubst < infra/k8s/ingress-deployment.yaml | kubectl apply -f -
+
 deploy-selenium-hub:
 	envsubst < infra/k8s/selenium-hub-deployment.yaml | kubectl apply -f -
 
