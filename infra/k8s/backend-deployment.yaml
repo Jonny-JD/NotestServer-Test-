@@ -24,7 +24,7 @@ spec:
           - name: SPRING_PROFILES_ACTIVE
             value: "test"
           - name: DB_URL
-            value: "jdbc:postgresql://192.168.3.16:5433/notesbase-test"
+            value: "jdbc:postgresql://192.168.3.16:5433/postgres-test"
           - name: DB_USERNAME
             valueFrom:
               secretKeyRef:
