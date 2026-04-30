@@ -125,6 +125,9 @@ jobs:
       run: |
         ls -la
         chmod +x gradlew
+        
+    - name: Port forward selenium hub
+      run: kubectl port-forward svc/selenium-hub 4444:4444 -n test &
       
     - name: Run autotests
       run: ./gradlew test
