@@ -121,6 +121,9 @@ jobs:
     - name: Wait for firefox rollout
       run: kubectl rollout status deployment/selenium-firefox -n test
 
+    - name: Make gradlew executable
+      run: chmod +x gradlew
+      
     - name: Run autotests
       run: ./gradlew test
       env:
