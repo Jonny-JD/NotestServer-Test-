@@ -132,7 +132,7 @@ jobs:
     - name: Run autotests
       run: ./gradlew test
       env:
-        SELENIUM_HUB: http://selenium-hub
+        SELENIUM_HUB: http://localhost:4444
         APP_URL: http://frontend-service
         
     - name: Upload test artifacts
