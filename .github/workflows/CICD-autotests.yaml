@@ -99,6 +99,14 @@ jobs:
 
     - name: Wait for backend rollout
       run: kubectl rollout status deployment/backend -n test
+    
+    - name: Wait for ingress rollout
+      run: kubectl rollout status deployment/ingress -n test
+
+    - name: Check ingress
+      run: |
+        kubectl get ingress -n test
+        curl http://$(kubectl get ingress test-ingress -n test -o jsonpath='{.status.loadBalancer.ingress[0].ip}')/api/v1/auth/me
 
     - name: Wait for frontend rollout
       run: kubectl rollout status deployment/frontend -n test
