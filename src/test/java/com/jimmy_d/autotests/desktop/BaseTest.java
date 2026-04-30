@@ -10,8 +10,10 @@ public abstract class BaseTest {
 
     @BeforeAll
     static void configure() {
-        Configuration.baseUrl = "http://host.docker.internal:5173";
-        Configuration.remote = "http://localhost:4444";
+        Configuration.remote = System.getenv()
+                .getOrDefault("SELENIUM_HUB", "http://localhost:4444/wd/hub");
+        Configuration.baseUrl = System.getenv()
+                .getOrDefault("APP_URL", "http://host.docker.internal:5173");
         Configuration.browser = "chrome";
         Configuration.timeout = 4000;
     }
