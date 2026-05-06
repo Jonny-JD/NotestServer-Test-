@@ -17,6 +17,9 @@ jobs:
     - name: Checkout autotests repo
       uses: actions/checkout@v4
 
+    - name: Cleanup namespace
+      run: rm rf notes-frontend notes-backend
+
     - name: Clone frontend
       uses: actions/checkout@v4
       with:
