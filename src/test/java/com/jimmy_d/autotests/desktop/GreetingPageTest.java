@@ -1,6 +1,8 @@
 package com.jimmy_d.autotests.desktop;
 
+import com.jimmy_d.autotests.desktop.page.GreetingPage;
 import com.jimmy_d.autotests.desktop.page.MainPage;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -12,22 +14,23 @@ import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-class MainPageTest extends BaseTest {
 
-    MainPage  mainPage = new MainPage();
-
+@Slf4j
+class GreetingPageTest extends BaseTest {
+    private final GreetingPage greetingPage = new GreetingPage();
+    private final MainPage mainPage = new MainPage();
 
     //Unsigned user
-
     @Test
-    void buttonsShouldBeDisplayed() {
-        mainPage.open();
+    void menuButtonUnsignedUserShouldBeVisible() {
+        greetingPage.open();
 
-        var expectedButtonNames = Stream.of("sign in", "sign up", "discover")
+        var expectedButtonNames = Stream.of("discover", "create", "sign in", "sign up")
                 .map(String::toUpperCase)
-                .sorted().toArray(String[]::new);
+                .sorted()
+                .toArray(String[]::new);
 
-        var actualButtons = mainPage.mainButtons();
+        var actualButtons = greetingPage.asideButtons();
 
         var actualButtonNames = actualButtons.stream()
                 .map(elem -> elem
@@ -44,21 +47,29 @@ class MainPageTest extends BaseTest {
     }
 
     @Test
-    void buttonsShouldBeActive() {
-        mainPage.open();
+    void menuButtonUnsignedUserShouldBeActive() {
 
         var buttons = Map.of(
                 "sign-in", "login",
-                "sign-up", "register",
-                "discover", "discover"
+                "discover", "discover",
+                "create", "create",
+                "sign-up", "register"
         );
 
         buttons.forEach((id, path) -> {
-            mainPage.open();
+            greetingPage.open();
             $("[data-testid='%s']".formatted(id)).click();
-            webdriver().shouldHave(urlContaining("/" + path));
+            webdriver().shouldHave(urlContaining(greetingPage.getUrl() + path));
         });
     }
 
-    //Signed user
+    @Test
+    void connectButtonShouldBeDisplayedAndActive() {
+        greetingPage.open();
+        var connectButton = greetingPage.connectButton();
+        connectButton.shouldBe(visible);
+        connectButton.click();
+        webdriver().shouldHave(urlContaining(mainPage.getUrl()));
+    }
+
 }
