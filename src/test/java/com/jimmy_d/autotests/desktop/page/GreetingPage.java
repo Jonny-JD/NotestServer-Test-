@@ -1,19 +1,20 @@
 package com.jimmy_d.autotests.desktop.page;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
+import com.jimmy_d.autotests.desktop.page.object.MenuButtons;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class GreetingPage extends BasePage {
+    public final MenuButtons menuButtons;
+
+    public GreetingPage() {
+        this.menuButtons = new MenuButtons();
+    }
+
     @Override
     public String getUrl() {
         return "/";
-    }
-
-    public ElementsCollection asideButtons() {
-        return $(By.className("aside-interaction-buttons")).findAll("button");
     }
 
     public SelenideElement connectButton() {

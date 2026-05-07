@@ -14,10 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class MainPageTest extends BaseTest {
 
-    MainPage  mainPage = new MainPage();
+    MainPage mainPage = new MainPage();
 
-
-    //Unsigned user
+    @Test
+    void menuButtonsTestUnsigned() {
+        mainPage.open();
+        mainPage.menuButtons.assertButtonsUnsigned();
+    }
 
     @Test
     void buttonsShouldBeDisplayed() {
@@ -38,9 +41,7 @@ class MainPageTest extends BaseTest {
 
         assertArrayEquals(expectedButtonNames, actualButtonNames);
 
-        actualButtons.forEach(button -> {
-            button.shouldBe(visible);
-        });
+        actualButtons.forEach(button -> button.shouldBe(visible));
     }
 
     @Test

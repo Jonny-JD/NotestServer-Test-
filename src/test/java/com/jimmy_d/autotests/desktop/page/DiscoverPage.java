@@ -1,15 +1,15 @@
 package com.jimmy_d.autotests.desktop.page;
 
-import com.codeborne.selenide.SelenideElement;
-import com.jimmy_d.autotests.desktop.page.object.OptionsBlock;
-
-import static com.codeborne.selenide.Selenide.$;
+import com.jimmy_d.autotests.desktop.page.object.MenuButtons;
+import com.jimmy_d.autotests.desktop.page.object.OptionsBlockForm;
 
 public class DiscoverPage extends BasePage {
-    public final OptionsBlock optionsBlock;
+    public final OptionsBlockForm optionsBlockForm;
+    public final MenuButtons menuButtons;
 
     public DiscoverPage() {
-        this.optionsBlock = new OptionsBlock();
+        this.optionsBlockForm = new OptionsBlockForm();
+        this.menuButtons = new MenuButtons();
     }
 
     @Override
@@ -17,7 +17,4 @@ public class DiscoverPage extends BasePage {
         return "/discover";
     }
 
-    public SelenideElement baseFilterButton(){
-        return $("[data-testid='filter']");
-    }
 }
