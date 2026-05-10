@@ -23,7 +23,7 @@ class NoteCreateTest extends BaseTest {
         var expectedNote = TestFactory.createNote();
         $("[data-testid='discover']").shouldBe(visible);
         $("[data-testid='discover']").click();
-        Thread.sleep(1500);
+        Thread.sleep(5000);
         Selenide.refresh();
 
         discoverPage.notesList().findAll("a")
@@ -50,7 +50,7 @@ class NoteCreateTest extends BaseTest {
         $("[data-testid='my-notes']").shouldBe(visible);
         var expectedNote = TestFactory.createNote();
         $("[data-testid='my-notes']").click();
-        Thread.sleep(1500);
+        Thread.sleep(5000);
         Selenide.refresh();
         myNotesPage.notesList().shouldBe(visible);
         myNotesPage.notesList().findAll("a").findBy(text(expectedNote.noteTitle())).click();
