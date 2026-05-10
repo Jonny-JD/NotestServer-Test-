@@ -1,9 +1,9 @@
-package com.jimmy_d.autotests.desktop;
+package com.jimmy_d.autotests.mobile;
 
-import com.jimmy_d.autotests.desktop.page.LoginPage;
+import com.jimmy_d.autotests.page.LoginPage;
 import org.junit.jupiter.api.Test;
 
-class LoginPageTest extends BaseTest {
+class LoginPageMobileTest extends BaseTestMobile {
 
     private final LoginPage loginPage = new LoginPage();
 
@@ -11,7 +11,7 @@ class LoginPageTest extends BaseTest {
     @Test
     void menuButtonsTestUnsigned() {
         loginPage.open();
-        loginPage.menuButtons.assertButtonsUnsigned();
+        loginPage.menuButtonsToggle.assertButtonsUnsigned();
     }
 
     @Test

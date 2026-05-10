@@ -1,17 +1,15 @@
-package com.jimmy_d.autotests.desktop;
+package com.jimmy_d.autotests.mobile;
 
-import com.jimmy_d.autotests.desktop.page.RegisterPage;
-import com.jimmy_d.autotests.desktop.page.object.MenuButtons;
+import com.jimmy_d.autotests.page.RegisterPage;
 import org.junit.jupiter.api.Test;
 
-class RegisterPageTest extends BaseTest {
+class RegisterPageMobileTest extends BaseTestMobile {
     private final RegisterPage registerPage = new RegisterPage();
-    private final MenuButtons menuButtons = new MenuButtons();
 
     @Test
     void menuButtonsTestUnsigned() {
         registerPage.open();
-        menuButtons.assertButtonsUnsigned();
+        registerPage.menuButtonsToggle.assertButtonsUnsigned();
     }
 
     @Test

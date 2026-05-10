@@ -1,6 +1,7 @@
-package com.jimmy_d.autotests.desktop.page.object;
+package com.jimmy_d.autotests.page.object;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import java.util.Map;
@@ -13,7 +14,7 @@ import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class MenuButtons {
+public class MenuButtonsToggle {
     public final Map<String, String> buttonsUnsigned = Map.of(
             "sign-in", "/login",
             "discover", "/discover",
@@ -27,9 +28,13 @@ public class MenuButtons {
             .toArray(String[]::new);
 
 
-    public final ElementsCollection actualButtons = $(By.className("aside-interaction-buttons")).findAll("button");
+    public final ElementsCollection actualButtons = $(By.className("dropdown-options")).findAll("button");
+
+    private final SelenideElement toggleMenuButton = $(By.className("dropdown-button"));
+
 
     public void assertButtonsUnsigned() {
+        toggleMenuButton.click();
 
         //visibility, clickability check
         actualButtons.forEach(button ->
@@ -48,9 +53,11 @@ public class MenuButtons {
 
         assertArrayEquals(expectedButtonNamesUnsigned, actualButtonNames);
 
+        toggleMenuButton.click();
 
         //proper navigation check
         buttonsUnsigned.forEach((id, path) -> {
+            toggleMenuButton.click();
             $("[data-testid='%s']".formatted(id)).click();
             webdriver().shouldHave(urlContaining(path));
         });

@@ -1,18 +1,18 @@
-package com.jimmy_d.autotests.desktop;
+package com.jimmy_d.autotests.mobile;
 
-import com.jimmy_d.autotests.desktop.page.CreatePage;
+import com.jimmy_d.autotests.page.CreatePage;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.visible;
 
-class CreatePageTest extends BaseTest {
+class CreatePageMobileTest extends BaseTestMobile {
     private final CreatePage createPage = new CreatePage();
 
 
     @Test
     void menuButtonsTestUnsigned() {
         createPage.open();
-        createPage.menuButtons.assertButtonsUnsigned();
+        createPage.menuButtonsToggle.assertButtonsUnsigned();
     }
 
     @Test

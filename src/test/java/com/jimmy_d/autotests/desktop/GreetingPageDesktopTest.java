@@ -1,7 +1,7 @@
 package com.jimmy_d.autotests.desktop;
 
-import com.jimmy_d.autotests.desktop.page.GreetingPage;
-import com.jimmy_d.autotests.desktop.page.MainPage;
+import com.jimmy_d.autotests.page.GreetingPage;
+import com.jimmy_d.autotests.page.MainPage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +12,14 @@ import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 
 @Slf4j
-class GreetingPageTest extends BaseTest {
+class GreetingPageDesktopTest extends BaseTestDesktop {
     private final GreetingPage greetingPage = new GreetingPage();
     private final MainPage mainPage = new MainPage();
 
     @Test
     void menuButtonsTestUnsigned() {
         greetingPage.open();
-        greetingPage.menuButtons.assertButtonsUnsigned();
+        greetingPage.menuButtonsAside.assertButtonsUnsigned();
     }
 
     @Test

@@ -1,19 +1,19 @@
 package com.jimmy_d.autotests.desktop;
 
-import com.jimmy_d.autotests.desktop.page.DiscoverPage;
+import com.jimmy_d.autotests.page.DiscoverPage;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-class DiscoverPageTest extends BaseTest {
+class DiscoverPageDesktopTest extends BaseTestDesktop {
     private final DiscoverPage discoverPage = new DiscoverPage();
 
     @Test
     void menuButtonsTestUnsigned() {
         discoverPage.open();
-        discoverPage.menuButtons.assertButtonsUnsigned();
+        discoverPage.menuButtonsAside.assertButtonsUnsigned();
     }
 
     @Test

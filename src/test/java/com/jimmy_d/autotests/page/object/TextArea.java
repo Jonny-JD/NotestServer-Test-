@@ -1,4 +1,4 @@
-package com.jimmy_d.autotests.desktop.page.object;
+package com.jimmy_d.autotests.page.object;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;

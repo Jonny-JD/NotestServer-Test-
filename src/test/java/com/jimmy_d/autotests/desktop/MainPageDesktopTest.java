@@ -1,6 +1,6 @@
 package com.jimmy_d.autotests.desktop;
 
-import com.jimmy_d.autotests.desktop.page.MainPage;
+import com.jimmy_d.autotests.page.MainPage;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -12,14 +12,14 @@ import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-class MainPageTest extends BaseTest {
+class MainPageDesktopTest extends BaseTestDesktop {
 
     MainPage mainPage = new MainPage();
 
     @Test
     void menuButtonsTestUnsigned() {
         mainPage.open();
-        mainPage.menuButtons.assertButtonsUnsigned();
+        mainPage.menuButtonsAside.assertButtonsUnsigned();
     }
 
     @Test

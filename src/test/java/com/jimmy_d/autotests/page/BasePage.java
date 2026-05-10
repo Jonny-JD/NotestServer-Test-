@@ -1,4 +1,4 @@
-package com.jimmy_d.autotests.desktop.page;
+package com.jimmy_d.autotests.page;
 
 import com.codeborne.selenide.Selenide;
 
