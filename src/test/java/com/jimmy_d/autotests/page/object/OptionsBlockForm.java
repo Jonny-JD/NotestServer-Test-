@@ -43,6 +43,9 @@ public class OptionsBlockForm {
             return form.findAll(By.className("options-form-label"));
         }
 
+        public SelenideElement fieldInput(String id) {
+            return form.$(By.id(id));
+        }
 
         public void assertOptionsBlockFormCheck(String headerText, String[] expectedFieldNames, String submitButtonText) {
 
