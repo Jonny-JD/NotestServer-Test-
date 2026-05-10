@@ -15,6 +15,7 @@ class UserRegisterAndLoginTest extends BaseTest {
     void assertTestRegisterAndLogUser() {
         var user = TestFactory.registerUser(TestFactory.generateUser());
         TestFactory.loginUser(user);
+
         $("[data-testid='profile']").shouldBe(visible).click();
 
         profilePage.usernameField.shouldHave(text(user.name()));
