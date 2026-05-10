@@ -155,4 +155,5 @@ jobs:
           build/screenshots
 
     - name: Run make cleanup
+      if: always()
       run: make cleanup-namespace
