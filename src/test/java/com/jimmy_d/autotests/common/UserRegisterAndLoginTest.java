@@ -17,7 +17,6 @@ class UserRegisterAndLoginTest extends BaseTest {
     void assertTestRegisterAndLogUser() {
         var user = TestFactory.registerUser(TestFactory.generateUser());
         TestFactory.loginUser(user);
-        Thread.sleep(5000);
 
         $("[data-testid='profile']").shouldBe(visible).click();
 
