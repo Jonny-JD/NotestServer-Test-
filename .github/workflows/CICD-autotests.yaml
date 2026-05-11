@@ -151,3 +151,8 @@ jobs:
     - name: Run make cleanup
       if: always()
       run: make cleanup-namespace
+
+    - name: Reset test database
+      run: |
+        docker exec postgres-test psql -U ${{ secrets.TEST_DB_USER }} -c "DROP DATABASE \"postgres-test\";"
+        docker exec postgres-test psql -U ${{ secrets.TEST_DB_USER }} -c "CREATE DATABASE \"postgres-test\";"
