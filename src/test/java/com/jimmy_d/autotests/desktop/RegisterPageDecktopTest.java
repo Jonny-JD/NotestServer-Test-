@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 class RegisterPageDecktopTest extends BaseTestDesktop {
     private final RegisterPage registerPage = new RegisterPage();
 
-
     @Test
     void menuButtonsTestUnsigned() {
         registerPage.open();

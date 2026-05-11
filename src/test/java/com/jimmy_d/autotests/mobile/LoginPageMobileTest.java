@@ -7,7 +7,6 @@ class LoginPageMobileTest extends BaseTestMobile {
 
     private final LoginPage loginPage = new LoginPage();
 
-
     @Test
     void menuButtonsTestUnsigned() {
         loginPage.open();

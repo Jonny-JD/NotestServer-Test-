@@ -2,7 +2,6 @@ package com.jimmy_d.autotests.desktop;
 
 import com.jimmy_d.autotests.page.GreetingPage;
 import com.jimmy_d.autotests.page.MainPage;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.clickable;
@@ -11,7 +10,6 @@ import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 
-@Slf4j
 class GreetingPageDesktopTest extends BaseTestDesktop {
     private final GreetingPage greetingPage = new GreetingPage();
     private final MainPage mainPage = new MainPage();

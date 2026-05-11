@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Condition.visible;
 class CreatePageMobileTest extends BaseTestMobile {
     private final CreatePage createPage = new CreatePage();
 
-
     @Test
     void menuButtonsTestUnsigned() {
         createPage.open();
