@@ -138,9 +138,13 @@ jobs:
       env:
         SELENIUM_HUB: http://localhost:4444
         APP_URL: http://frontend-service
-        
+
+    - name: Generate Allure report
+      if: always()
+      run: ./gradlew allureReport
+      
     - name: Upload test artifacts
-      if: failure()
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: test-reports
@@ -153,6 +157,7 @@ jobs:
       run: make cleanup-namespace
 
     - name: Reset test database
+      if: always()
       run: |
         docker exec postgres-test psql -U ${{ secrets.TEST_DB_USER }} -c "DROP DATABASE \"postgres-test\";"
         docker exec postgres-test psql -U ${{ secrets.TEST_DB_USER }} -c "CREATE DATABASE \"postgres-test\";"
