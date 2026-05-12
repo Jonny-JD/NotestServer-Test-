@@ -118,6 +118,12 @@ Cleanup: delete namespace + reset test database
 
 Tests connect to the app and Selenium Hub via Kubernetes internal service DNS names when running inside the cluster.
 
+## Related Repositories
+
+- [NotesServer Backend](https://github.com/Jonny-JD/NotesServer-B-) — Java 21, Spring Boot, PostgreSQL
+- [NotesServer Frontend](https://github.com/Jonny-JD/NotesServer-F-) — React, TypeScript, Vite
+- [NotesServer Infrastructure](https://github.com/Jonny-JD/NotesServer-Infrastructure) — Kubernetes (K3s), Helm, Traefik, Let's Encrypt, GitHub Actions
+
 ## About
 
 This project was built for my portfolio. It demonstrates:
